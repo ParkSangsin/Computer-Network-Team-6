@@ -10,6 +10,7 @@ const app = express()
 // express http 서버 생성
 const server = http.createServer(app)
 
+let users = []
 
 // 서버를 8080 포트로 listen
 server.listen(8080, function() {
@@ -29,14 +30,17 @@ app.get('/', function(request, response) {
 })
 
 // 유저가 웹소켓 연결 시 실행
-io.sockets.on('connection', function(socket) {
+io.sockets.on('connection', function (socket) {
+
 
   // 새로운 유저 접속 시 다른 소켓에게도 알려줌 
   socket.on('newUser', function(name) {
     console.log(name + ' 님이 접속하였습니다.')
 
     // 소켓에 이름 저장
-    socket.name = name
+      socket.name = name
+      users.push(name)
+      io.emit('updateUserList', users)
 
     // 모든 소켓에 전송 
     io.sockets.emit('update', {type: 'connect', name: 'SERVER', message: name + '님이 접속하였습니다.'})
@@ -55,8 +59,9 @@ io.sockets.on('connection', function(socket) {
 
   // 접속 종료
   socket.on('disconnect', function() {
-    console.log(socket.name + '님이 나가셨습니다.')
-
+      console.log(socket.name + '님이 나가셨습니다.')
+      users = users.filter(user => user !== socket.name)
+      io.emit('updateUserList', users)
     // 나가는 사람을 제외한 나머지 유저에게 메시지 전송
     socket.broadcast.emit('update', {type: 'disconnect', name: 'SERVER', message: socket.name + '님이 나가셨습니다.'});
   })

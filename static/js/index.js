@@ -82,3 +82,14 @@ function send() {
   // 서버로 데이터와 함께 message 이벤트 전달 
   socket.emit('message', {type: 'message', message: message})
 }
+
+
+socket.on('updateUserList', function (users) {
+    const userList = document.getElementById('userList')
+    userList.innerHTML = ''
+    users.forEach(function (user) {
+        const li = document.createElement('li')
+        li.textContent = user
+        userList.appendChild(li)
+    })
+})

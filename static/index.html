@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <title>채팅</title>
     <link rel="stylesheet" href="/css/index.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/index.js"></script>
-  </head>
-  <body>
+</head>
+<body>
     <div id="main">
-      <div id="chat">
-        <!-- 채팅 메시지 영역 -->
-      </div>
-      <div>
-        <input type="text" id="input_message" placeholder="메시지를 입력해주세요..">
-        <button onclick="send()">전송</button>
-      </div>
+        <did id="users">
+            <!--접속한 유저 리스트 영역-->
+            <h3>접속한 유저</h3>
+            <ul id="userList"></ul>
+        </did>
+        <div id="chat">
+            <!-- 채팅 메시지 영역 -->
+        </div>
+        <div>
+            <input type="text" id="input_message" placeholder="메시지를 입력해주세요..">
+            <button onclick="send()">전송</button>
+        </div>
     </div>
-  </body>
+</body>
 </html>
