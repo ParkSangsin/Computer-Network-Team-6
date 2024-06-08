@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="utf-8">
     <title>채팅</title>
@@ -8,18 +8,20 @@
     <script src="/js/index.js"></script>
 </head>
 <body>
-    <div id="main">
-        <did id="users">
+    <div id="container">
+        <div id="users">
             <!--접속한 유저 리스트 영역-->
             <h3>접속한 유저</h3>
             <ul id="userList"></ul>
-        </did>
-        <div id="chat">
-            <!-- 채팅 메시지 영역 -->
         </div>
-        <div>
-            <input type="text" id="input_message" placeholder="메시지를 입력해주세요..">
-            <button onclick="send()">전송</button>
+        <div id="chat-container">
+            <div id="chat">
+                <!-- 채팅 메시지 영역 -->
+            </div>
+            <div id="input-container">
+                <input type="text" id="input_message" placeholder="메시지를 입력해주세요..">
+                <button onclick="send()">전송</button>
+            </div>
         </div>
     </div>
 </body>
