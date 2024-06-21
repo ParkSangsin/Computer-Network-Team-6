@@ -4,7 +4,7 @@ let socket = io();
 // 접속 (자동 수신)
 socket.on('connect', function() {
     // 이름 입력
-    let name = prompt('반갑습니다!', '');
+    let name = prompt('반갑습니다! 닉네임을 작성해주세요.', '');
 
     // 이름이 빈칸인 경우
     if (!name) {
